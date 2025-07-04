@@ -7,8 +7,7 @@
     "dotenv": "^16.6.0",
     "express": "^5.1.0",
     "jsonwebtoken": "^9.0.2",
-    "mongoose": "^8.16.1",
-    "nodemon": "^3.1.10"
+    "mongoose": "^8.16.1"
   },
   "name": "sicklecell-master",
   "version": "1.0.0",
@@ -21,11 +20,10 @@
   ],
   "type": "module",
   "scripts": {
-  "build": "tsc",
-  "start": "node dist/index.js",
-  "server": "nodemon backend/index.js"
-}
-  ,
+    "build": "tsc",
+    "start": "node dist/index.js",
+    "server": "nodemon backend/index.js"
+  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/koladeade/Sicklecell.git"
@@ -38,6 +36,7 @@
   "homepage": "https://github.com/koladeade/Sicklecell#readme",
   "description": "",
   "devDependencies": {
+    "nodemon": "^3.1.10",
     "ts-node": "^10.9.2"
   }
 }
