@@ -156,6 +156,10 @@ form button{
     font-weight: 600;
     text-transform: uppercase;
     cursor: pointer;
+    transition: transform 0.1s ease;
+}
+form button:active{
+    transform: scale(0.95);
 }
 a{
     text-decoration: none;
