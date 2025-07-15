@@ -367,6 +367,9 @@ nav li:first-child{
 .resource-link a:active{
   color: white;
 }
+fieldset{
+  border: none;
+}
 .frame{
   display: inline-block;
   flex-direction: row;
@@ -429,3 +432,4 @@ nav li:first-child{
   }
 
 }
+
