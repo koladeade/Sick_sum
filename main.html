@@ -79,10 +79,18 @@
   </main>
 
   <section id="caretaker">
-    <h2>Caretaker Information</h2>
+    <fieldset>
+      <h2 class="center">Caretaker Information</h2>
+      <p class="center">Fill out this form for your caretaker information</p>
+    <label for="Name" class="caretaker">Name:</label>
     <input type="text" placeholder="Name (required)" id="Name" class="input-field"> <br>
+    <label for="phone" class="caretaker">Phone Number:</label>
     <input type="tel" placeholder="Phone number(required)" id="phone" class="input-field"> <br>
-    <input type="text" placeholder="Relationship" id="relative" class="input-field"><br>
+    <label for="email" class="caretaker">Email:</label>
+    <input type="email" placeholder="Email (required)" id="email" class="input-field" required > <br>
+    <label for="relative" class="caretaker">Relationship:</label>
+    <input type="text" placeholder="e.g Father, Mother, Guardian.." id="relative" class="input-field"><br>
+    </fieldset>
     <button class="submit-button">Save</button>
     <button class="submit-button">Delete</button>
   </section>
@@ -133,7 +141,7 @@
     </div>
   </footer>
 
-  <!-- JavaScript -->
+
   <script>
     function showSidebar() {
       document.querySelector('.sidebar').style.display = 'flex';
