@@ -1,9 +1,12 @@
 import express from 'express';
+import cookieParser from 'cookie-parser';
 import cors from 'cors';
 import authRoute from './routes/auth.routes.js';
 import dotenv from 'dotenv';
 
+
 import connectdb from './db/db.js';
+import healthRoute from './routes/health.routes.js';
 
 const app = express();
 const PORT = process.env.PORT || 5000;
@@ -19,8 +22,10 @@ app.use(cors({
 
 
 app.use(express.json());
+app.use(cookieParser());
 
 app.use('/api/auth', authRoute);
+app.use('/api/health', healthRoute); // Assuming health status routes are under healthRoute
 
  app.get('/', (req, res) => {
   res.send('<h1>hello world</h1>');
