@@ -85,7 +85,6 @@ nav li:first-child{
   
   .pain-log,
   .reminders,
-  #caretaker,
   #personal,
   #resources {
     background: white;
@@ -123,11 +122,7 @@ nav li:first-child{
     margin: 0.5rem 0;
   }
 
-  .range{
-      width: 100%;
-      max-width: 100%;
-      height: 8px;    
-  }
+ 
   
   .pain-log button,
   .reminders button,
@@ -135,8 +130,8 @@ nav li:first-child{
     background-color: #b91c1c;
     color: white;
     padding: 0.75rem 1.5rem;
-    border: none;
     border-radius: 8px;
+    border-color: white 15px solid;
     cursor: pointer;
     margin-bottom: 20px;
     transition: transform 0.1s ease;

@@ -1,40 +1,43 @@
-function handleSave() {
-  // Get textarea input
-  const triggers = document.querySelector('.triggers').value;
+document
+  .getElementById("personal")
+  .addEventListener("submit", async function (e) {
+    e.preventDefault();
 
-  // Get selected sickle cell type
-  const sickleCell = document.querySelector('input[name="sickle-cell"]:checked')?.value || "";
+    const form = e.target;
+    const formData = new FormData(form);
 
-  // Get selected frequency
-  const frequency = document.querySelector('input[name="frequency"]:checked')?.value || "";
+    // Collect checkbox values (multiple with same name)
+    const triggers = [];
+    form.querySelectorAll('input[name="crisisTriggers"]:checked').forEach((el) => {
+      triggers.push(el.value);
+    });
 
-  // Combine into a JSON object
-  const data = {
-    triggers,
-    sickleCell,
-    frequency
-  };
+    const data = {
+      crisisTriggers: triggers,
+      sickleCellType:
+        form.querySelector('input[name="sickleType"]:checked')?.value || null,
+      crisisFrequency:
+        form.querySelector('input[name="frequency"]:checked')?.value || null,
+    };
+    console.log(data);
 
-  console.log("Collected data:", data);
+    const token = localStorage.getItem('auth_token');
+    try {
+      const response = await fetch("http://localhost:3000/api/health/health-status", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        'Authorization': `Bearer ${token}`,
+        credentials: 'include',
+        body: JSON.stringify(data),
+      });
 
-  // Optional: send to server
-  fetch('https://your-server.com/save', {
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/json',
-    },
-    body: JSON.stringify(data)
-  })
-  .then(res => {
-    if (!res.ok) throw new Error("Server error");
-    return res.json();
-  })
-  .then(response => {
-    alert("Data saved successfully!");
-    console.log("Server response:", response);
-  })
-  .catch(err => {
-    alert("Failed to save data.");
-    console.error(err);
+      if (response.ok) {
+        alert("Data saved successfully!");
+      } else {
+        alert("Failed to save data.");
+      }
+    } catch (err) {
+      console.error("Error:", err);
+      alert("An error occurred.");
+    }
   });
-}

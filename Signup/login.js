@@ -40,6 +40,8 @@ form.addEventListener('submit', async (e) => {
             setTimeout(() => {
                 window.location.href = '/main.html';
             }, 1500);
+            const token = data.token; 
+            localStorage.setItem('auth_token', token);
         } else {
             errorMessage.textContent = data.message || 'Invalid credentials';
             email_input.parentElement.classList.add('incorrect');
