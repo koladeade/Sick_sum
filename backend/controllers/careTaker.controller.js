@@ -25,14 +25,21 @@ const addCareTaker = async (req, res) => {
     }
 };
 
-const getCareTakers = async (req, res) => {
+const getCareTaker = async (req, res) => {
     try {
-        const careTakers = await CareTaker.find();
-        res.status(200).json(careTakers);
+        const userPhone = req.params.userPhone;
+        const careTaker = await CareTaker.findOne({ user: userPhone });
+
+        if (!careTaker) {
+            return res.status(404).json({ message: "CareTaker not found" });
+        }
+
+        res.status(200).json(careTaker);
     } catch (error) {
-        console.error("Error fetching caretakers:", error);
+        console.error("Error fetching caretaker:", error);
         res.status(500).json({ message: "Server Error" });
     }
 };
 
-export  { addCareTaker, getCareTakers };
+
+export  { addCareTaker, getCareTaker };
