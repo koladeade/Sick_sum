@@ -19,7 +19,7 @@ document
         form.querySelector('input[name="frequency"]:checked')?.value || null,
     };
 
-    console.log("Submitting health data:", data);
+    console.table("Submitting health data:", data);
 
     try {
       const response = await fetch("http://localhost:3000/api/health/health-status", {
@@ -116,4 +116,5 @@ closeBtn?.addEventListener("click", () => {
 });
 
 
+ console.log("Frontend main.js loaded successfully");
  
