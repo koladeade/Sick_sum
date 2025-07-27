@@ -3,7 +3,7 @@ body {
     text-align: center;
     padding: 4rem;
     background-color: #fefefe;
-    background-image: url(images/backg.png);
+    background-image: url(../images/backg.png);
   }
   .logout-message {
     background-color: #fef2f2;

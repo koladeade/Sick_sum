@@ -137,7 +137,6 @@ function getLoginFormErrors(email, password) {
     return errors;
 }
 
-// Input cleanup
 const allInputs = [firstname_input, email_input, password_input, number_input, repeat_password_input].filter(Boolean);
 
 allInputs.forEach((input) => {
