@@ -1,20 +1,18 @@
 const form = document.getElementById('form');
 const email_input = document.getElementById('email-input');
 const password_input = document.getElementById('password-input');
-
-// Optional: use a toast or inline error display
 const errorMessage = document.getElementById('error-message');
 
 form.addEventListener('submit', async (e) => {
     e.preventDefault();
 
+    // Reset UI state
     email_input.parentElement.classList.remove('incorrect');
     password_input.parentElement.classList.remove('incorrect');
     errorMessage.textContent = '';
 
     const email = email_input.value.trim();
     const password = password_input.value;
-
     const errors = getLoginFormErrors(email, password);
 
     if (errors.length > 0) {
@@ -27,9 +25,11 @@ form.addEventListener('submit', async (e) => {
     try {
         const res = await fetch('http://localhost:3000/api/auth/login', {
             method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
+            headers: {
+                'Content-Type': 'application/json'
+            },
             body: JSON.stringify(payload),
-            credentials: 'include'
+            credentials: 'include' // ✅ Ensures cookie is saved by browser
         });
 
         const data = await res.json();
@@ -37,6 +37,11 @@ form.addEventListener('submit', async (e) => {
         if (res.ok) {
             errorMessage.style.color = 'green';
             errorMessage.textContent = 'Login successful! Redirecting...';
+
+            // ⛔️ Remove token storage — not needed when using cookies
+            // const token = data.token;
+            // localStorage.setItem('auth_token', token);
+
             setTimeout(() => {
                 window.location.href = '/main.html';
             }, 1500);
@@ -53,6 +58,7 @@ form.addEventListener('submit', async (e) => {
 
 function getLoginFormErrors(email, password) {
     const errors = [];
+
     if (!email) {
         errors.push('Email is required');
         email_input.parentElement.classList.add('incorrect');
@@ -69,7 +75,7 @@ function getLoginFormErrors(email, password) {
     return errors;
 }
 
-// Input cleanup
+// Clear errors on input change
 [email_input, password_input].forEach((input) => {
     input.addEventListener('input', () => {
         input.parentElement.classList.remove('incorrect');

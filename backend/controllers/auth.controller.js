@@ -4,12 +4,7 @@ import generateToken from "../utils/generateToken.js";
 
 const signup = async (req, res) => {
   try {
-    const {
-      fullName,
-      email,
-      phoneNumber,
-      password,
-    } = req.body;
+    const { fullName, email, phoneNumber, password } = req.body;
 
     // Validate required fields
     if (!fullName || !email || !phoneNumber || !password) {
@@ -22,15 +17,21 @@ const signup = async (req, res) => {
     }
 
     if (fullName.length < 6 || fullName.length > 20) {
-      return res.status(400).json({ message: "Full name must be between 6 and 20 characters." });
+      return res
+        .status(400)
+        .json({ message: "Full name must be between 6 and 20 characters." });
     }
 
     if (password.length < 6) {
-      return res.status(400).json({ message: "Password must be at least 6 characters." });
+      return res
+        .status(400)
+        .json({ message: "Password must be at least 6 characters." });
     }
 
     if (!/^\d{10,15}$/.test(phoneNumber)) {
-      return res.status(400).json({ message: "Phone number must be 10 to 15 digits long." });
+      return res
+        .status(400)
+        .json({ message: "Phone number must be 10 to 15 digits long." });
     }
 
     // Optional: Check if user already exists
@@ -45,7 +46,7 @@ const signup = async (req, res) => {
       fullName,
       email,
       phoneNumber,
-      password: hashedPassword
+      password: hashedPassword,
     });
 
     await newUser.save();
@@ -59,7 +60,6 @@ const signup = async (req, res) => {
       phoneNumber: newUser.phoneNumber,
       message: "User registered successfully",
     });
-
   } catch (error) {
     console.error("Signup error:", error);
     res.status(500).json({ message: "Internal server error in signup" });
@@ -72,7 +72,9 @@ const login = async (req, res) => {
 
     // Validate required fields
     if (!email || !password) {
-      return res.status(400).json({ message: "Email and password are required." });
+      return res
+        .status(400)
+        .json({ message: "Email and password are required." });
     }
 
     const user = await User.findOne({ email });
@@ -94,23 +96,24 @@ const login = async (req, res) => {
       phoneNumber: user.phoneNumber,
       message: "Login successful",
     });
-
   } catch (error) {
     console.error("Login error:", error);
     res.status(500).json({ message: "Internal server error in login" });
   }
 };
 
-
 const logout = (req, res) => {
   try {
-    res.clearCookie("token");
+    res.clearCookie("jwt", {
+      httpOnly: true,
+      secure: process.env.NODE_ENV === "production",
+      sameSite: "Lax",
+    });
     return res.status(200).json({ message: "Logout successful" });
-  }
-  catch (error) {
+  } catch (error) {
     console.error("Logout error:", error);
     res.status(500).json({ message: "Internal server error in logout" });
   }
-}
+};
 
 export { signup, login, logout };

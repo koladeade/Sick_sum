@@ -1,17 +1,22 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>CrisisTrack</title>
-  <link rel="stylesheet" href="main.css">
+  <link rel="stylesheet" href="main.css" />
+  <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+  <link href="https://cdn.jsdelivr.net/npm/daisyui@5" rel="stylesheet" type="text/css" />
+  <script src="main.js" defer></script>
 </head>
-<body>
+
+<body class="bg-gray-100">
   <nav>
     <ul class="sidebar">
       <li onclick="hideSidebar()"><a href="#"><svg xmlns="http://www.w3.org/2000/svg" height="26px" viewBox="0 -960 960 960" width="26px" fill="#b91c1c"><path d="m256-200-56-56 224-224-224-224 56-56 224 224 224-224 56 56-224 224 224 224-56 56-224-224-224 224Z"/></svg></a></li>
-      <li><a href="signup.html">Signup</a></li>
-      <li><a href="login.html">Login</a></li>
+      <li><a href="../Signup/signup.html">Signup</a></li>
+      <li><a href="../Signup/login.html">Login</a></li>
       <li><a href="main.html">Home</a></li>
       <li><a href="log-out.html">Logout</a></li>
     </ul>
@@ -21,17 +26,50 @@
       <li class="hideOnMobile"><a href="login.html">Login</a></li>
       <li class="hideOnMobile"><a href="main.html">Home</a></li>
       <li class="hideOnMobile"><a href="log-out.html">Logout</a></li>
-      <li class="menu-button" onclick="showSidebar()"><a href="#"><svg xmlns="http://www.w3.org/2000/svg" height="26px" viewBox="0 -960 960 960" width="26px" fill="#b91c1c"><path d="M120-240v-80h720v80H120Zm0-200v-80h720v80H120Zm0-200v-80h720v80H120Z"/></svg></a></li>
+      <li class="menu-button" onclick="showSidebar()">
+        <a href="#"><svg xmlns="http://www.w3.org/2000/svg" height="26px" viewBox="0 -960 960 960" width="26px"
+            fill="#b91c1c">
+            <path d="M120-240v-80h720v80H120Zm0-200v-80h720v80H120Zm0-200v-80h720v80H120Z" />
+          </svg></a>
+      </li>
     </ul>
   </nav>
 
   <main>
-    <section class="pain-log">
+    <section class="pain-log bg-white p-6 rounded-2xl shadow-md">
       <h2>Log Your Pain</h2>
       <textarea class="triggers" placeholder="Describe your pain today..."></textarea>
-      <label for="pain-level">Pain Level (1 - Normal, 5 - Average, 10 - Excruciating)</label><br>
-      <input class="range" type="range" id="pain-level" min="1" max="10" />
-      <div class="scale-labels"><span>1</span><span>5</span><span>10</span></div>
+      <div class="w-full mb-5">
+        <input type="range" min="1" max="10" value="1" class="w-full" step="1" />
+
+        <div class="flex justify-between px-2.5 mt-2 text-xs">
+          <!-- Tick marks -->
+          <span>|</span>
+          <span>|</span>
+          <span>|</span>
+          <span>|</span>
+          <span>|</span>
+          <span>|</span>
+          <span>|</span>
+          <span>|</span>
+          <span>|</span>
+          <span>|</span>
+        </div>
+
+        <div class="flex justify-between px-2.5 mt-2 text-xs">
+          <!-- Labels -->
+          <span>1</span>
+          <span>2</span>
+          <span>3</span>
+          <span>4</span>
+          <span>5</span>
+          <span>6</span>
+          <span>7</span>
+          <span>8</span>
+          <span>9</span>
+          <span>10</span>
+        </div>
+      </div>
       <button onclick="submitPainLog()">Submit Pain Log</button>
     </section>
 
@@ -45,11 +83,12 @@
           Medication <button onclick="toggleForm('medication')">Set</button>
         </li>
         <li class="reminder-item">
-          Wellness Check-in <button onclick="toggleForm('wellness')">Set</button>
+          Wellness Check-in
+          <button onclick="toggleForm('wellness')">Set</button>
         </li>
       </ul>
 
-      <div id="reminder-form-container" style="display:none;">
+      <div id="reminder-form-container" style="display: none">
         <form class="reminder-form">
           <label for="reminder-time">Date and Time</label>
           <input type="datetime-local" id="reminder-time" required />
@@ -61,10 +100,12 @@
 
           <button type="button" onclick="setReminder()">Set Reminder</button>
           <button type="button" onclick="clearReminders()">Clear All</button>
-          <button type="button" onclick="stopReminderSound()">Stop Sound</button>
+          <button type="button" onclick="stopReminderSound()">
+            Stop Sound
+          </button>
         </form>
 
-        <div id="sound-status" class="sound-status" style="display:none;">
+        <div id="sound-status" class="sound-status" style="display: none">
           🔊 Reminder Sound Playing...
         </div>
       </div>
@@ -74,7 +115,9 @@
     </section>
 
     <section class="panic">
-      <button id="panic-btn">PANIC</button>
+      <button id="panic-btn" class="border border-white bg-black">
+        PANIC
+      </button>
     </section>
   </main>
 
@@ -83,11 +126,11 @@
       <h2 class="center">Caretaker Information</h2>
       <p class="center">Fill out this form for your caretaker information</p>
     <label for="Name" class="caretaker">Name:</label>
-    <input type="text" placeholder="Name" id="Name" class="input-field"> <br>
+    <input type="text" placeholder="Name (required)" id="Name" class="input-field"> <br>
     <label for="phone" class="caretaker">Phone Number:</label>
-    <input type="tel" placeholder="Phone number" id="phone" class="input-field"> <br>
+    <input type="tel" placeholder="Phone number(required)" id="phone" class="input-field"> <br>
     <label for="email" class="caretaker">Email:</label>
-    <input type="email" placeholder="you@example.com" id="email" class="input-field" required > <br>
+    <input type="email" placeholder="Email (required)" id="email" class="input-field" required > <br>
     <label for="relative" class="caretaker">Relationship:</label>
     <input type="text" placeholder="e.g Father, Mother, Guardian.." id="relative" class="input-field"><br>
     </fieldset>
@@ -128,10 +171,13 @@
       <li><a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC9175917/" target="_blank">Nutrition and Hydration for SCD</a></li>
       <li><a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC1279994/" target="_blank">Managing Pain - Medical Guide</a></li>
     </ul>
-    <div class="frame">
-      <iframe width="300" height="200" src="https://www.youtube.com/embed/dJBmtPR_flg" title="What is sickle-cell-disease" allowfullscreen></iframe>
-      <iframe width="300" height="200" src="https://www.youtube.com/embed/qK5H9fPkltc" title="What you need to know about sickle-cell-disease" allowfullscreen></iframe>
-      <iframe width="300" height="200" src="https://www.youtube.com/embed/fIIJmg_1hv0" title="Overview of sickle-cell-disease" allowfullscreen></iframe>
+    <div class=" flex  w-full  gap-4 ml-10 flex-row justify-center items-center">
+      <iframe width="300" height="200" src="https://www.youtube.com/embed/dJBmtPR_flg"
+        title="What is sickle-cell-disease" allowfullscreen></iframe>
+      <iframe width="300" height="200" src="https://www.youtube.com/embed/qK5H9fPkltc"
+        title="What you need to know about sickle-cell-disease" allowfullscreen></iframe>
+      <iframe width="300" height="200" src="https://www.youtube.com/embed/fIIJmg_1hv0"
+        title="Overview of sickle-cell-disease" allowfullscreen></iframe>
     </div>
   </section>
 
@@ -141,40 +187,42 @@
     </div>
   </footer>
 
-
   <script>
     function showSidebar() {
-      document.querySelector('.sidebar').style.display = 'flex';
+      document.querySelector(".sidebar").style.display = "flex";
     }
 
     function hideSidebar() {
-      document.querySelector('.sidebar').style.display = 'none';
+      document.querySelector(".sidebar").style.display = "none";
     }
 
-    const reminderList = document.getElementById('reminder-list');
-    const reminderSound = document.getElementById('reminder-sound');
-    const soundStatus = document.getElementById('sound-status');
+    const reminderList = document.getElementById("reminder-list");
+    const reminderSound = document.getElementById("reminder-sound");
+    const soundStatus = document.getElementById("sound-status");
     const reminders = [];
 
     function toggleForm(type) {
-      const formContainer = document.getElementById('reminder-form-container');
-      const msgInput = document.getElementById('reminder-msg');
+      const formContainer = document.getElementById(
+        "reminder-form-container"
+      );
+      const msgInput = document.getElementById("reminder-msg");
 
-      if (type === 'medication') {
-        msgInput.value = 'Take Medication';
-      } else if (type === 'hydration') {
-        msgInput.value = 'Drink Water';
-      } else if (type === 'wellness') {
-        msgInput.value = 'Wellness Check';
+      if (type === "medication") {
+        msgInput.value = "Take Medication";
+      } else if (type === "hydration") {
+        msgInput.value = "Drink Water";
+      } else if (type === "wellness") {
+        msgInput.value = "Wellness Check";
       }
 
-      formContainer.style.display = formContainer.style.display === 'none' ? 'block' : 'none';
+      formContainer.style.display =
+        formContainer.style.display === "none" ? "block" : "none";
     }
 
     function setReminder() {
-      const timeInput = document.getElementById('reminder-time').value;
-      const message = document.getElementById('reminder-msg').value;
-      const repeat = document.getElementById('repeat-daily').checked;
+      const timeInput = document.getElementById("reminder-time").value;
+      const message = document.getElementById("reminder-msg").value;
+      const repeat = document.getElementById("repeat-daily").checked;
 
       if (!timeInput || !message) {
         alert("Please fill out all reminder fields.");
@@ -195,16 +243,17 @@
     }
 
     function displayReminder(reminder, index) {
-      const div = document.createElement('div');
-      div.className = 'reminder-item';
+      const div = document.createElement("div");
+      div.className = "reminder-item";
       div.dataset.index = index;
 
-      const text = document.createElement('span');
-      text.innerText = `${reminder.time.toLocaleString()} - ${reminder.message}${reminder.repeat ? ' (Daily)' : ''}`;
+      const text = document.createElement("span");
+      text.innerText = `${reminder.time.toLocaleString()} - ${reminder.message
+        }${reminder.repeat ? " (Daily)" : ""}`;
 
-      const delBtn = document.createElement('button');
-      delBtn.innerText = 'Delete';
-      delBtn.className = 'delete-btn';
+      const delBtn = document.createElement("button");
+      delBtn.innerText = "Delete";
+      delBtn.className = "delete-btn";
       delBtn.onclick = () => {
         reminders.splice(index, 1);
         div.remove();
@@ -217,7 +266,7 @@
 
     function clearReminders() {
       reminders.length = 0;
-      reminderList.innerHTML = '';
+      reminderList.innerHTML = "";
     }
 
     function stopReminderSound() {
@@ -228,20 +277,20 @@
     }
 
     function updateSoundStatus(isPlaying) {
-      soundStatus.style.display = 'block';
+      soundStatus.style.display = "block";
       soundStatus.innerText = isPlaying
-        ? '🔊 Reminder Sound Playing...'
-        : '✅ Reminder Sound Stopped';
+        ? "🔊 Reminder Sound Playing..."
+        : "✅ Reminder Sound Stopped";
       if (!isPlaying) {
-        setTimeout(() => (soundStatus.style.display = 'none'), 2000);
+        setTimeout(() => (soundStatus.style.display = "none"), 2000);
       }
     }
 
     function triggerNotification(message) {
-      if ('Notification' in window && Notification.permission === 'granted') {
+      if ("Notification" in window && Notification.permission === "granted") {
         new Notification("🔔 Reminder", {
           body: message,
-          icon: 'https://cdn-icons-png.flaticon.com/512/1828/1828884.png',
+          icon: "https://cdn-icons-png.flaticon.com/512/1828/1828884.png",
         });
       }
 
@@ -276,4 +325,5 @@
     }, 15000);
   </script>
 </body>
+
 </html>

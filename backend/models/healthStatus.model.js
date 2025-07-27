@@ -2,7 +2,7 @@ import mongoose from 'mongoose';
 
 const SickleCellFormSchema = new mongoose.Schema({
   crisisTriggers: {
-    type: String,
+    type: [String],
     required: true
   },
   sickleCellType: {
@@ -12,12 +12,7 @@ const SickleCellFormSchema = new mongoose.Schema({
   },
   crisisFrequency: {
     type: String,
-    enum: ['Often (within 2-4 months)', 'Sometimes (within 5-12 months)', 'Rarely (once a year)'],
-    required: true
-  },
-  user: {
-    type: mongoose.Schema.Types.ObjectId,
-    ref: 'User',
+    enum: ['Often', 'Sometimes', 'Rarely'],
     required: true
   }
 }, { timestamps: true });
