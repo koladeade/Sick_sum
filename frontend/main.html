@@ -14,7 +14,11 @@
 <body class="bg-gray-100">
   <nav>
     <ul class="sidebar">
-      <li onclick="hideSidebar()"><a href="#"><svg xmlns="http://www.w3.org/2000/svg" height="26px" viewBox="0 -960 960 960" width="26px" fill="#b91c1c"><path d="m256-200-56-56 224-224-224-224 56-56 224 224 224-224 56 56-224 224 224 224-56 56-224-224-224 224Z"/></svg></a></li>
+      <li onclick="hideSidebar()"><a href="#"><svg xmlns="http://www.w3.org/2000/svg" height="26px"
+            viewBox="0 -960 960 960" width="26px" fill="#b91c1c">
+            <path
+              d="m256-200-56-56 224-224-224-224 56-56 224 224 224-224 56 56-224 224 224 224-56 56-224-224-224 224Z" />
+          </svg></a></li>
       <li><a href="../Signup/signup.html">Signup</a></li>
       <li><a href="../Signup/login.html">Login</a></li>
       <li><a href="main.html">Home</a></li>
@@ -32,6 +36,27 @@
             <path d="M120-240v-80h720v80H120Zm0-200v-80h720v80H120Zm0-200v-80h720v80H120Z" />
           </svg></a>
       </li>
+      <!-- <div class="size-9 rounded-full bg-slate-400 mx-4 cursor-pointer ">
+        <img src="https://placehold.co/40x40" alt="User Avatar" class="w-full h-full object-cover rounded-full" /> -->
+
+      <!-- Profile Dropdown -->
+      <!-- <span class="flex border flex-col absolute top-14 right-0 h-auto bg-white w-[400px] shadow-lg shadow-gray-00 rounded-lg p-4 z-50"> -->
+
+      <!-- Header -->
+      <!-- <div class="flex flex-row gap-4 items-center">
+            <div class="size-[70px] rounded-full">
+              <img src="https://placehold.co/70x70" alt="User Avatar" class="w-full h-full object-cover rounded-full" />
+            </div>
+            <div>
+              <h3 class="text-lg font-semibold text-gray-800">Kolade Adepoju</h3>
+              <p class="text-gray-600"><strong>Email:</strong> kolade@example.com</p>
+              <p class="text-gray-600"><strong>Phone:</strong> +234 803 123 4567</p>
+            </div>
+          </div>
+
+        </span> -->
+      <!-- </div> -->
+
     </ul>
   </nav>
 
@@ -115,7 +140,7 @@
     </section>
 
     <section class="panic">
-      <button id="panic-btn" class="border border-white bg-black">
+      <button id="panic-trigger" class="">
         PANIC
       </button>
     </section>
@@ -125,16 +150,16 @@
     <fieldset>
       <h2 class="center">Caretaker Information</h2>
       <p class="center">Fill out this form for your caretaker information</p>
-    <label for="Name" class="caretaker">Name:</label>
-    <input type="text" placeholder="Name (required)" id="Name" class="input-field"> <br>
-    <label for="phone" class="caretaker">Phone Number:</label>
-    <input type="tel" placeholder="Phone number(required)" id="phone" class="input-field"> <br>
-    <label for="email" class="caretaker">Email:</label>
-    <input type="email" placeholder="Email (required)" id="email" class="input-field" required > <br>
-    <label for="relative" class="caretaker">Relationship:</label>
-    <input type="text" placeholder="e.g Father, Mother, Guardian.." id="relative" class="input-field"><br>
-    <label for="patient" class="caretaker">Patient Name:</label>
-    <input type="text" placeholder="Patient Name" id="patientName" class="input-field"><br>
+      <label for="Name" class="caretaker">Name:</label>
+      <input type="text" placeholder="Name (required)" id="Name" class="input-field"> <br>
+      <label for="phone" class="caretaker">Phone Number:</label>
+      <input type="tel" placeholder="Phone number(required)" id="phone" class="input-field"> <br>
+      <label for="email" class="caretaker">Email:</label>
+      <input type="email" placeholder="Email (required)" id="email" class="input-field" required> <br>
+      <label for="relative" class="caretaker">Relationship:</label>
+      <input type="text" placeholder="e.g Father, Mother, Guardian.." id="relative" class="input-field"><br>
+      <label for="patient" class="caretaker">Patient Name:</label>
+      <input type="text" placeholder="Patient Name" id="patientName" class="input-field"><br>
     </fieldset>
     <button class="submit-button">Save</button>
     <button class="submit-button">Delete</button>
@@ -148,27 +173,27 @@
       <legend class="text-lg font-medium text-gray-700 mb-2">What triggers your crisis</legend>
       <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
         <label class="flex items-center gap-3">
-          <input type="checkbox" name="crisisTriggers" value="Stress"  class="checkbox checkbox-sm" />
+          <input type="checkbox" name="crisisTriggers" value="Stress" class="checkbox checkbox-sm" />
           <span>Stress</span>
         </label>
         <label class="flex items-center gap-3">
-          <input type="checkbox" name="crisisTriggers" value="Dehydration"  class="checkbox checkbox-sm" />
+          <input type="checkbox" name="crisisTriggers" value="Dehydration" class="checkbox checkbox-sm" />
           <span>Dehydration</span>
         </label>
         <label class="flex items-center gap-3">
-          <input type="checkbox" name="crisisTriggers" value="Temperature Changes"  class="checkbox checkbox-sm" />
+          <input type="checkbox" name="crisisTriggers" value="Temperature Changes" class="checkbox checkbox-sm" />
           <span>Temperature Changes</span>
         </label>
         <label class="flex items-center gap-3">
-          <input type="checkbox" name="crisisTriggers" value="Infections"  class="checkbox checkbox-sm" />
+          <input type="checkbox" name="crisisTriggers" value="Infections" class="checkbox checkbox-sm" />
           <span>Infections</span>
         </label>
         <label class="flex items-center gap-3">
-          <input type="checkbox" name="crisisTriggers" value="Fatigue"  class="checkbox checkbox-sm" />
+          <input type="checkbox" name="crisisTriggers" value="Fatigue" class="checkbox checkbox-sm" />
           <span>Fatigue</span>
         </label>
         <label class="flex items-center gap-3">
-          <input type="checkbox" name="crisisTriggers" value="Other"  class="checkbox checkbox-sm" />
+          <input type="checkbox" name="crisisTriggers" value="Other" class="checkbox checkbox-sm" />
           <span>Other</span>
         </label>
       </div>
@@ -217,14 +242,27 @@
         Delete
       </button>
     </div>
-  </form> 
+  </form>
+
+  <div id="panic-modal" class="fixed w-full h-screen top-[50%] left-[50%] translate-x-[-50%] translate-y-[-50%] bg-black/30 backdrop-blur-sm hidden items-center justify-center z-40">
+    <div class="p-6 bg-white absolute top-[50%] left-[50%] translate-x-[-50%] translate-y-[-50%] rounded-xl shadow-xl space-y-6 w-full max-w-md ">
+      <button onclick="closePanicModal()"
+        class="absolute top-2 right-3 text-gray-500 hover:text-gray-800 text-lg hover:bg-gray-200 rounded-md px-1">✕</button>
+      <h2 class="text-xl font-semibold text-center">Enter Phone Number</h2>
+      <input type="tel" id="phone-query" class="w-full px-4 py-2 border rounded-lg"
+        placeholder="Enter caretaker's phone number" />
+      <button onclick="findCaretaker()" class="w-full bg-red-600 text-white py-2 rounded-lg hover:bg-red-700">
+        Show Contact Info
+      </button>
+    </div>
+  </div>
 
   <div
+    id="caretaker-info"
     class="caretaker-info-container fixed inset-0 z-50 hidden opacity-0 transition-opacity duration-300 ease-out items-center justify-center backdrop-blur-sm bg-black/30 px-4">
     <div
-      class="caretaker-info w-full max-w-2xl p-6 border-5 top-[50%] left-[50%] translate-x-[-50%] translate-y-[-50%] bg-gradient-to-br from-white to-gray-50 rounded-2xl shadow-xl space-y-6 relative">
+      class="caretaker-info w-full max-w-2xl p-6 border-5 top-[50%] left-[50%] translate-x-[-50%] translate-y-[-50%] bg-gradient-to-br from-white to-gray-50 rounded-2xl shadow-xl space-y-6 absolute">
 
-      <!-- Close Button -->
       <div
         class="close-caretaker-info size-10 absolute top-4 right-4 rounded-md bg-slate-100 hover:bg-slate-200 flex items-center justify-center cursor-pointer">
         <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
@@ -237,12 +275,10 @@
       </h3>
 
       <div class="flex flex-col md:flex-row items-center gap-6">
-        <!-- Avatar -->
         <div class="caretaker-img w-[150px] h-[150px] overflow-hidden rounded-full shadow">
           <img src="https://placehold.net/avatar.svg" alt="Caretaker Avatar" class="w-full h-full object-cover" />
         </div>
 
-        <!-- Info -->
         <div class="caretaker-details flex-1 space-y-2">
           <div class="text-gray-700 text-base">
             <strong>Name:</strong>
@@ -267,7 +303,6 @@
         </div>
       </div>
 
-      <!-- Optional Decorative Bar or Status -->
       <div
         class="w-full text-center bg-green-100 border border-green-300 text-green-800 py-3 px-4 rounded-xl shadow-sm">
         <strong>Action:</strong> Call your caretaker now!
@@ -283,9 +318,12 @@
   <section id="resources">
     <h2>Educational Resources</h2>
     <ul class="resource-link">
-      <li><a href="https://www.nhlbi.nih.gov/health/sickle-cell-disease" target="_blank">Understanding Sickle Cell</a></li>
-      <li><a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC9175917/" target="_blank">Nutrition and Hydration for SCD</a></li>
-      <li><a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC1279994/" target="_blank">Managing Pain - Medical Guide</a></li>
+      <li><a href="https://www.nhlbi.nih.gov/health/sickle-cell-disease" target="_blank">Understanding Sickle Cell</a>
+      </li>
+      <li><a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC9175917/" target="_blank">Nutrition and Hydration for
+          SCD</a></li>
+      <li><a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC1279994/" target="_blank">Managing Pain - Medical Guide</a>
+      </li>
     </ul>
     <div class=" flex  w-full  gap-4 ml-10 flex-row justify-center items-center">
       <iframe width="300" height="200" src="https://www.youtube.com/embed/dJBmtPR_flg"

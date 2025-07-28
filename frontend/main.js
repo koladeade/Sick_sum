@@ -95,26 +95,87 @@ document.getElementById("caretaker").addEventListener("submit", async function (
 
 
 
-const container = document.querySelector(".caretaker-info-container");
-const openBtn = document.querySelector("#panic-btn");
-const closeBtn = document.querySelector(".close-caretaker-info");
+// const container = document.querySelector(".caretaker-info-container");
+// const openBtn = document.querySelector("#panic-btn");
+// const closeBtn = document.querySelector(".close-caretaker-info");
 
-openBtn?.addEventListener("click", () => {
-  container.classList.remove("hidden");
-  setTimeout(() => {
-    container.classList.remove("opacity-0");
-    container.classList.add("opacity-100");
-  }, 10); // slight delay to trigger transition
-});
+// openBtn?.addEventListener("click", () => {
+//   container.classList.remove("hidden");
+//   setTimeout(() => {
+//     container.classList.remove("opacity-0");
+//     container.classList.add("opacity-100");
+//   }, 10); // slight delay to trigger transition
+// });
 
-closeBtn?.addEventListener("click", () => {
-  container.classList.remove("opacity-100");
-  container.classList.add("opacity-0");
-  setTimeout(() => {
-    container.classList.add("hidden");
-  }, 300); // match transition duration
-});
+// closeBtn?.addEventListener("click", () => {
+//   container.classList.remove("opacity-100");
+//   container.classList.add("opacity-0");
+//   setTimeout(() => {
+//     container.classList.add("hidden");
+//   }, 300); // match transition duration
+// });
 
 
  console.log("Frontend main.js loaded successfully");
+
+
+const panicTrigger = document.getElementById("panic-trigger");
+const panicModal = document.getElementById("panic-modal");
+const caretakerInfo = document.getElementById("caretaker-info");
+
+const phoneInput = document.getElementById("phone-query");
+
+// Open modal on panic click
+panicTrigger.addEventListener("click", () => {
+  panicModal.classList.remove("hidden");
+  phoneInput.focus();
+});
+
+// Close modal
+function closePanicModal() {
+  panicModal.classList.add("hidden");
+}
+
+// Close caretaker info panel
+document.querySelector(".close-caretaker-info").addEventListener("click", () => {
+  caretakerInfo.classList.add("hidden");
+  caretakerInfo.classList.remove("flex", "opacity-100");
+});
+
+// Fetch caretaker from backend API
+async function findCaretaker() {
+  const rawNumber = phoneInput.value.trim();
+  const sanitizedNumber = rawNumber.replace(/[^0-9]/g, ""); // only digits
+
+  if (!sanitizedNumber) {
+    alert("Please enter a valid phone number.");
+    return;
+  }
+
+  try {
+    const response = await fetch(`http://localhost:3000/api/caretaker/${sanitizedNumber}`);
+    if (!response.ok) throw new Error("Caretaker not found.");
+    console.log(sanitizedNumber, "Caretaker found, fetching data...");
+
+    const data = await response.json();
+
+    // Inject data into UI
+    document.getElementById("caretaker-name").textContent = data.name || "N/A";
+    document.getElementById("caretaker-phone").textContent = data.phone || "N/A";
+    document.getElementById("caretaker-email").textContent = data.email || "N/A";
+    document.getElementById("caretaker-relationship").textContent = data.relationship || "N/A";
+    document.getElementById("caretaker-patientName").textContent = data.patientName || "N/A";
+    document.querySelector(".caretaker-img img").src = data.avatar || "https://placehold.net/avatar.svg";
+
+    // Show contact info
+    panicModal.classList.add("hidden");
+    caretakerInfo.classList.remove("hidden");
+    caretakerInfo.classList.add("flex", "opacity-100");
+
+  } catch (error) {
+    alert("Caretaker not found or server error.");
+    console.error(error);
+  }
+}
+
  
