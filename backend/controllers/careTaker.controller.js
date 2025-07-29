@@ -2,12 +2,16 @@ import CareTaker from "../models/careTaker.model.js";
 
 const addCareTaker = async (req, res) => {
     try {
-        const { name, phone, email, relationship, patientName } = req.body;
+        const name = req.body.name?.trim();
+        const phone = req.body.phone?.trim();
+        const email = req.body.email?.trim();
+        const relationship = req.body.relationship?.trim();
+        const patientName = req.body.patientName?.trim();
 
         if (!name || !phone || !email || !relationship || !patientName) {
-            console.error("Validation error: Missing required fields:", name, phone, email, relationship, patientName);
+            console.error("Validation error: Missing required fields.");
             return res.status(400).json({ message: "All fields are required." });
-            }
+        }
 
         const newCareTaker = new CareTaker({
             name,
@@ -27,19 +31,18 @@ const addCareTaker = async (req, res) => {
 
 const getCareTaker = async (req, res) => {
     try {
-        const userPhone = req.params.userPhone;
-        const careTaker = await CareTaker.findOne({ user: userPhone });
+        const careTaker = await CareTaker.findOne({ phone: req.params.phone });
 
         if (!careTaker) {
-            return res.status(404).json({ message: "CareTaker not found" });
+            return res.status(404).json({ message: 'User not found' });
         }
 
-        res.status(200).json(careTaker);
+        console.log('User fetched successfully:', careTaker);
+        res.json(careTaker);
     } catch (error) {
-        console.error("Error fetching caretaker:", error);
-        res.status(500).json({ message: "Server Error" });
+        console.error('Error fetching user:', error.message);
+        res.status(500).json({ error: error.message });
     }
 };
 
-
-export  { addCareTaker, getCareTaker };
+export { addCareTaker, getCareTaker };

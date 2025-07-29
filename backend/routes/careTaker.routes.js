@@ -6,7 +6,7 @@ const careTakerRoutes = express.Router();
 // Route to add a caretaker
 careTakerRoutes.post("/add", addCareTaker);
 // Route to get all caretakers
-careTakerRoutes.get("/:userId", getCareTaker);
+careTakerRoutes.get("/:phone", getCareTaker);
 
 
 export default careTakerRoutes; 
