@@ -66,7 +66,6 @@ document.getElementById("caretaker").addEventListener("submit", async function (
     relationship,
     patientName // 🔁 Replace this with dynamic user name if available
   };
-  console.log("Submitting caretaker data:", data);
 
   try {
     const response = await fetch("http://localhost:3000/api/caretaker/add", {
@@ -116,7 +115,6 @@ document.getElementById("caretaker").addEventListener("submit", async function (
 // });
 
 
- console.log("Frontend main.js loaded successfully");
 
 
 const panicTrigger = document.getElementById("panic-trigger");
@@ -155,7 +153,6 @@ async function findCaretaker() {
   try {
     const response = await fetch(`http://localhost:3000/api/caretaker/${sanitizedNumber}`);
     if (!response.ok) throw new Error("Caretaker not found.");
-    console.log(sanitizedNumber, "Caretaker found, fetching data...");
 
     const data = await response.json();
 
@@ -179,3 +176,42 @@ async function findCaretaker() {
 }
 
  
+
+  async function submitPainLog(event) {
+    event.preventDefault(); // Prevent page reload
+
+    const description = document.getElementById("description").value.trim();
+    const level = parseInt(document.getElementById("level").value);
+
+    if (!description) {
+      alert("Please describe your pain.");
+      return;
+    }
+
+    try {
+      const response = await fetch("http://localhost:3000/api/pain/log", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ description, level }),
+      });
+
+      if (!response.ok) {
+        const data = await response.json();
+        alert("Error: " + data.message);
+        return;
+      }
+
+      const result = await response.json();
+      alert("Pain log submitted successfully!");
+
+      // Optionally clear the form
+      document.getElementById("description").value = "";
+      document.getElementById("level").value = 1;
+
+    } catch (err) {
+      console.error("Error submitting pain log:", err);
+      alert("Something went wrong while submitting your pain log.");
+    }
+  }

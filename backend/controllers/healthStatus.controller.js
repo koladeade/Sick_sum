@@ -4,8 +4,6 @@ export const createForm = async (req, res) => {
   try {
     const { crisisTriggers, sickleCellType, crisisFrequency } = req.body;
 
-    console.log("req.user:", req.user);
-    console.log("req.userId:", req.userId);
 
     if (!crisisTriggers || !sickleCellType || !crisisFrequency) {
       return res.status(400).json({ message: "All fields are required." });
@@ -19,7 +17,6 @@ export const createForm = async (req, res) => {
     });
 
     const savedForm = await newForm.save();
-    console.log("Sickle Cell Form created successfully:", savedForm);
 
     res.status(201).json(savedForm);
   } catch (error) {

@@ -37,7 +37,6 @@ const getCareTaker = async (req, res) => {
             return res.status(404).json({ message: 'User not found' });
         }
 
-        console.log('User fetched successfully:', careTaker);
         res.json(careTaker);
     } catch (error) {
         console.error('Error fetching user:', error.message);

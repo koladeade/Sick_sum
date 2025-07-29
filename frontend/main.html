@@ -61,42 +61,24 @@
   </nav>
 
   <main>
-    <section class="pain-log bg-white p-6 rounded-2xl shadow-md">
+    <form class="pain-log bg-white p-6 rounded-2xl shadow-md" onsubmit="submitPainLog(event)">
       <h2>Log Your Pain</h2>
-      <textarea class="triggers" placeholder="Describe your pain today..."></textarea>
+      <textarea id="description" class="triggers" placeholder="Describe your pain today..."></textarea>
       <div class="w-full mb-5">
-        <input type="range" min="1" max="10" value="1" class="w-full" step="1" />
-
+        <input type="range" id="level" min="1" max="10" value="1" class="w-full" step="1" />
+        <!-- Tick marks and labels -->
         <div class="flex justify-between px-2.5 mt-2 text-xs">
-          <!-- Tick marks -->
-          <span>|</span>
-          <span>|</span>
-          <span>|</span>
-          <span>|</span>
-          <span>|</span>
-          <span>|</span>
-          <span>|</span>
-          <span>|</span>
-          <span>|</span>
-          <span>|</span>
+          <span>|</span><span>|</span><span>|</span><span>|</span><span>|</span>
+          <span>|</span><span>|</span><span>|</span><span>|</span><span>|</span>
         </div>
-
         <div class="flex justify-between px-2.5 mt-2 text-xs">
-          <!-- Labels -->
-          <span>1</span>
-          <span>2</span>
-          <span>3</span>
-          <span>4</span>
-          <span>5</span>
-          <span>6</span>
-          <span>7</span>
-          <span>8</span>
-          <span>9</span>
-          <span>10</span>
+          <span>1</span><span>2</span><span>3</span><span>4</span><span>5</span>
+          <span>6</span><span>7</span><span>8</span><span>9</span><span>10</span>
         </div>
       </div>
-      <button onclick="submitPainLog()">Submit Pain Log</button>
-    </section>
+      <button type="submit">Submit Pain Log</button>
+    </form>
+
 
     <section class="reminders">
       <h2>Reminders</h2>
@@ -244,8 +226,10 @@
     </div>
   </form>
 
-  <div id="panic-modal" class="fixed w-full h-screen top-[50%] left-[50%] translate-x-[-50%] translate-y-[-50%] bg-black/30 backdrop-blur-sm hidden items-center justify-center z-40">
-    <div class="p-6 bg-white absolute top-[50%] left-[50%] translate-x-[-50%] translate-y-[-50%] rounded-xl shadow-xl space-y-6 w-full max-w-md ">
+  <div id="panic-modal"
+    class="fixed w-full h-screen top-[50%] left-[50%] translate-x-[-50%] translate-y-[-50%] bg-black/30 backdrop-blur-sm hidden items-center justify-center z-40">
+    <div
+      class="p-6 bg-white absolute top-[50%] left-[50%] translate-x-[-50%] translate-y-[-50%] rounded-xl shadow-xl space-y-6 w-full max-w-md ">
       <button onclick="closePanicModal()"
         class="absolute top-2 right-3 text-gray-500 hover:text-gray-800 text-lg hover:bg-gray-200 rounded-md px-1">✕</button>
       <h2 class="text-xl font-semibold text-center">Enter Phone Number</h2>
@@ -257,8 +241,7 @@
     </div>
   </div>
 
-  <div
-    id="caretaker-info"
+  <div id="caretaker-info"
     class="caretaker-info-container fixed inset-0 z-50 hidden opacity-0 transition-opacity duration-300 ease-out items-center justify-center backdrop-blur-sm bg-black/30 px-4">
     <div
       class="caretaker-info w-full max-w-2xl p-6 border-5 top-[50%] left-[50%] translate-x-[-50%] translate-y-[-50%] bg-gradient-to-br from-white to-gray-50 rounded-2xl shadow-xl space-y-6 absolute">
